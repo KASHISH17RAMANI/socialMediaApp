@@ -43,3 +43,43 @@
     color: #fff;
     text-decoration: none;
 }
+
+#welcome {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+#main {
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+.col-sm-4 {
+    margin-bottom: 10px;
+}
+
+#address {
+    color: green;
+}
+
+.post-user-pic {
+    width: 100px;
+    height: auto;
+}
+
+.red {
+    color: red;
+}
+
+#comment-user-picture {
+    width: 65px;
+    height: auto;
+}
+
+.card {
+    width: 200px;
+    height: auto;
+}

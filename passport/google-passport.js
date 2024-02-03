@@ -25,7 +25,8 @@ passport.use(new GoogleStrategy({
     proxy: true
 },
     (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
+        // console.log(profile);
+        console.log(profile.photos[0].value);
         User.findOne({
             google: profile.id
         }).then((user) => {
@@ -38,7 +39,7 @@ passport.use(new GoogleStrategy({
                     lastname: profile.name.familyName,
                     firstname: profile.name.givenName,
                     email: profile.emails[0].value,
-                    image: profile.photos[0].value.substring(0, profile.photos[0].value.indexOf('?'))
+                    Image: profile.photos[0].value
                 }
                 // save new user into database
                 new User(newUser).save()
