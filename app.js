@@ -95,6 +95,7 @@ app.get(
     '/auth/google',
     passport.authenticate('google', {
         scope: ['profile', 'email'],
+        prompt: 'select_account'
     })
 );
 
@@ -495,11 +496,71 @@ app.post('/addComment/:id', (req, res) => {
                 });
         });
 });
+// // Handle User logout route
+// app.get('/logout', (req, res) => {
+//     req.logout();
+//     res.redirect('/');
+// });
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });
 // Handle User logout route
 app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+    req.logout((err) => {
+        if (err) {
+            console.error(err);
+            return res.redirect('/');
+        }
+        res.redirect('/');
+    });
 });
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+// const { OAuth2Client } = require('google-auth-library');
+
+// // Assuming you have your Google client ID and client secret
+// const googleClientId = keys.GoogleClientID;
+// const googleClientSecret = keys.GoogleClientSecret;
+
+// const googleOAuth2Client = new OAuth2Client(googleClientId, googleClientSecret);
+
+// // Handle User logout route
+// app.get('/logout', async (req, res) => {
+//     // Revoke Google access token
+//     if (req.user && req.user.googleAccessToken) {
+//         try {
+//             await googleOAuth2Client.revokeToken({
+//                 token: req.user.googleAccessToken,
+//             });
+//         } catch (error) {
+//             console.error('Error revoking Google token:', error.message);
+//         }
+//     }
+
+//     // Logout from your application
+//     req.logout(function (err) {
+//         if (err) {
+//             console.error(err);
+//             return res.redirect('/');
+//         }
+//         res.redirect('/');
+//     });
+// });
+
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });
+// app.get('/logout', function (req, res, next) {
+//     if (req.session) {
+//         // delete session object
+//         req.session.destroy(function (err) {
+//             if (err) {
+//                 return next(err);
+//             } else {
+//                 return res.redirect('/');
+//             }
+//         });
+//     }
+// });
